@@ -1,0 +1,38 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.RJDownloader" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/shayany</item>
+        <item name="colorPrimaryVariant">@color/shayany</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorControlActivated">?attr/colorPrimaryVariant</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+        <item name="android:navigationBarColor">@color/shayany</item>
+    </style>
+
+    <style name="Theme.RJDownloader.Dark" parent="ThemeOverlay.AppCompat.Dark">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/shey</item>
+        <item name="colorPrimaryVariant">@color/shey</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="android:windowBackground">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:navigationBarColor">?attr/colorPrimaryVariant</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Theme.RJDownloader.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.RJDownloader.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="CoverImageView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">5%</item>
+    </style>
+</resources>
