@@ -16,11 +16,9 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -30,7 +28,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.io.File;
 import java.net.NetworkInterface;
@@ -86,8 +86,7 @@ public class HomeActivity extends AppCompatActivity {
         app_version.setText("RJ Downloader : v" + BuildConfig.VERSION_NAME);
         imageView.setOnClickListener(v -> drawer.closeDrawer(GravityCompat.START));
         File AppDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/RadioJavan");
-        if (!AppDir.exists())
-        {
+        if (!AppDir.exists()) {
             AppDir.mkdirs();
         }
         toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -95,7 +94,7 @@ public class HomeActivity extends AppCompatActivity {
         toggle.syncState();
         //Load Default Fragment
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame, new HomeFragment());
+        transaction.add(R.id.frame, new HomeFragment());
         transaction.commit();
         //End of codes
         navigationView.setNavigationItemSelectedListener(menuItem -> {
@@ -110,7 +109,7 @@ public class HomeActivity extends AppCompatActivity {
                 if (Themes.GetCurrent(this).equals("black")) {
                     checked = 1;
                 }
-                AlertDialog.Builder Dialog = new AlertDialog.Builder(this, R.style.Theme_AppCompat_DayNight_Dialog_Alert);
+                MaterialAlertDialogBuilder Dialog = new MaterialAlertDialogBuilder(this);
                 Dialog.setTitle(R.string.theme_title);
                 Dialog.setSingleChoiceItems(Theme, checked, (dialog, which) -> {
                     if (which == 0) {
@@ -125,21 +124,21 @@ public class HomeActivity extends AppCompatActivity {
                 Dialog.setPositiveButton(R.string.save_theme, (dialog, which) -> recreate());
                 Dialog.show();
             } else if (id == R.id.nav_about) {
-                AlertDialog.Builder Dialog = new AlertDialog.Builder(this, R.style.Theme_AppCompat_DayNight_Dialog_Alert);
+                MaterialAlertDialogBuilder Dialog = new MaterialAlertDialogBuilder(this);
                 Dialog.setTitle(R.string.about_title);
                 Dialog.setMessage(R.string.about_text);
                 Dialog.setNeutralButton("VPN Pro", (dialog, which) -> {
                     try {
                         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://telegram.me/xvpnpro")));
                     } catch (Exception e) {
-                        Toast.makeText(this, R.string.telegram_not, Toast.LENGTH_SHORT).show();
+                        Snackbar.make(findViewById(android.R.id.content), R.string.telegram_not, Snackbar.LENGTH_SHORT).show();
                     }
                 });
                 Dialog.setNegativeButton("IC Mods", ((dialog, which) -> {
                     try {
                         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://telegram.me/ic_mods")));
                     } catch (Exception e) {
-                        Toast.makeText(this, R.string.telegram_not, Toast.LENGTH_SHORT).show();
+                        Snackbar.make(findViewById(android.R.id.content), R.string.telegram_not, Snackbar.LENGTH_SHORT).show();
                     }
                 }));
 
@@ -155,7 +154,8 @@ public class HomeActivity extends AppCompatActivity {
             return true;
         });
         if (!isVpnConnectionActive()) {
-            AlertDialog.Builder Dialog = new AlertDialog.Builder(this, R.style.Theme_AppCompat_DayNight_Dialog_Alert);
+
+            MaterialAlertDialogBuilder Dialog = new MaterialAlertDialogBuilder(this);
             Dialog.setMessage(R.string.vpn_dialog);
             Dialog.setPositiveButton("Okay", null);
             Dialog.show();

@@ -25,6 +25,7 @@
         android:id="@+id/splash_appname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:text="@string/app_name"
         android:textColor="@color/white"
         android:textSize="20sp"

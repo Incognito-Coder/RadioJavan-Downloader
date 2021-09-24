@@ -13,16 +13,17 @@
 
     <application
         android:allowBackup="false"
-        android:requestLegacyExternalStorage="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.RJDownloader">
         <activity android:name=".HelpActivity" />
         <activity
             android:name=".SplashActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.RJDownloader"
             tools:ignore="Instantiatable">
             <intent-filter>
@@ -33,6 +34,8 @@
         </activity>
         <activity
             android:name=".HomeActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
             tools:ignore="Instantiatable">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />

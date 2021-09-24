@@ -1,5 +1,9 @@
 package com.ahmand.rjdownloader;
 
+import static com.ahmand.rjdownloader.R.id;
+import static com.ahmand.rjdownloader.R.layout;
+import static com.ahmand.rjdownloader.R.string;
+
 import android.app.DownloadManager;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -10,15 +14,10 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.appcompat.widget.AppCompatEditText;
-import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 
 import com.android.volley.Request;
@@ -26,6 +25,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.switchmaterial.SwitchMaterial;
+import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,16 +37,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import static com.ahmand.rjdownloader.R.id;
-import static com.ahmand.rjdownloader.R.layout;
-import static com.ahmand.rjdownloader.R.string;
-import static com.ahmand.rjdownloader.R.style;
-
 
 public class HomeFragment extends Fragment {
     View view;
     DownloadManager downloadmanager;
-    AppCompatEditText link_text;
+    TextInputLayout link_text;
     TextView title_text;
     ImageView thumbnail;
     String link;
@@ -70,24 +67,26 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        SwitchCompat switcher = view.findViewById(id.Switch_autodl);
-        AppCompatButton down = view.findViewById(id.download_button);
-        Button search = view.findViewById(id.search_button);
+        SwitchMaterial switcher = view.findViewById(id.Switch_autodl);
+        View down = view.findViewById(id.download_button);
+        View search = view.findViewById(id.search_button);
         link_text = view.findViewById(id.url_field);
-        link_text.setText(shared);
+        link_text.getEditText().setText(shared);
         title_text = view.findViewById(id.title_text);
         thumbnail = view.findViewById(id.thumb);
-        switcher.setOnClickListener(v -> Toast.makeText(getContext(), string.soon_text, Toast.LENGTH_SHORT).show());
+        switcher.setOnClickListener(v -> {
+            Snackbar.make(getActivity().findViewById(android.R.id.content), R.string.soon_text, Snackbar.LENGTH_SHORT).show();
+        });
         search.setOnClickListener(v -> {
-            if (TextUtils.isEmpty(Objects.requireNonNull(link_text.getText()).toString())) {
-                Toast.makeText(getContext(), "Cant be empty", Toast.LENGTH_SHORT).show();
+            if (TextUtils.isEmpty(Objects.requireNonNull(link_text.getEditText().getText()).toString())) {
+                Snackbar.make(getActivity().findViewById(android.R.id.content), "Cant be empty", Snackbar.LENGTH_SHORT).show();
             } else {
-                Fetch(link_text.getText().toString());
+                Fetch(link_text.getEditText().getText().toString());
             }
         });
         down.setOnClickListener(v -> {
             if (!TextUtils.isEmpty(link)) {
-                Toast.makeText(getContext(), string.download_started, Toast.LENGTH_SHORT).show();
+                Snackbar.make(getActivity().findViewById(android.R.id.content), string.download_started, Snackbar.LENGTH_SHORT).show();
                 Uri uri = Uri.parse(link);
                 DownloadManager.Request request = new DownloadManager.Request(uri);
                 request.setTitle(title);
@@ -100,7 +99,7 @@ public class HomeFragment extends Fragment {
                 request.setDestinationUri(Uri.fromFile(new File(Environment.getExternalStorageDirectory() + "/RadioJavan", title + types.get(mime))));
                 downloadmanager.enqueue(request);
             } else {
-                Toast.makeText(getContext(), string.empty_queue, Toast.LENGTH_SHORT).show();
+                Snackbar.make(getActivity().findViewById(android.R.id.content), string.empty_queue, Snackbar.LENGTH_SHORT).show();
             }
 
         });
@@ -108,7 +107,7 @@ public class HomeFragment extends Fragment {
 
     public void Fetch(String rj) {
         final ProgressDialog pDialog;
-        pDialog = new ProgressDialog(getContext(), style.Theme_AppCompat_DayNight_Dialog_Alert);
+        pDialog = new ProgressDialog(getContext());
         pDialog.setTitle(getString(string.fetchtext));
         pDialog.setMessage(getString(string.searching));
         pDialog.setCancelable(false);

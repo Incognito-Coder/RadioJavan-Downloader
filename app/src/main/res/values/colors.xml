@@ -4,4 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="shayany">#d50000</color>
     <color name="shey">#9b0000</color>
+    <color name="gray">#1E1E1E</color>
 </resources>
