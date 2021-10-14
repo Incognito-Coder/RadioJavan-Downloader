@@ -42,7 +42,8 @@ public class DownloadsFragment extends Fragment {
         lv_files = view.findViewById(R.id.lv_files);
         try {
             ArrayList<String> filesinfolder;
-            filesinfolder = GetFiles(Environment.getExternalStorageDirectory() + "/RadioJavan");
+            Utils files = new Utils();
+            filesinfolder = files.GetFiles(Environment.getExternalStorageDirectory() + "/RadioJavan");
             ArrayAdapter<String> adapter
                     = new ArrayAdapter<>(getContext(),
                     android.R.layout.simple_list_item_1,
@@ -65,17 +66,6 @@ public class DownloadsFragment extends Fragment {
             Dialog.setNegativeButton(R.string.no, null);
             Dialog.show();
         });
-    }
-
-    public ArrayList<String> GetFiles(String directorypath) {
-        ArrayList<String> Myfiles = new ArrayList<>();
-        File f = new File(directorypath);
-        f.mkdirs();
-        File[] files = f.listFiles();
-        if (files.length != 0) {
-            for (File file : files) Myfiles.add(file.getName());
-        }
-        return Myfiles;
     }
 
 }

@@ -33,10 +33,6 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.io.File;
-import java.net.NetworkInterface;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -49,20 +45,6 @@ public class HomeActivity extends AppCompatActivity {
     View header;
     TextView app_version;
 
-    public static boolean isVpnConnectionActive() {
-        List<String> networks = new ArrayList<>();
-
-        try {
-            for (NetworkInterface networkInterface : Collections.list(NetworkInterface.getNetworkInterfaces())) {
-                if (networkInterface.isUp()) {
-                    networks.add(networkInterface.getName());
-                }
-            }
-        } catch (Exception ignored) {
-        }
-
-        return networks.contains("tun0") || networks.contains("ppp") || networks.contains("pptp");
-    }
 
     private SharedPreferences SavePreference() {
         return PreferenceManager.getDefaultSharedPreferences(this);
@@ -153,9 +135,10 @@ public class HomeActivity extends AppCompatActivity {
             drawer.closeDrawer(GravityCompat.START);
             return true;
         });
-        if (!isVpnConnectionActive()) {
+        if (!Utils.isVpnConnectionActive()) {
 
             MaterialAlertDialogBuilder Dialog = new MaterialAlertDialogBuilder(this);
+            Dialog.setTitle(R.string.attention);
             Dialog.setMessage(R.string.vpn_dialog);
             Dialog.setPositiveButton("Okay", null);
             Dialog.show();

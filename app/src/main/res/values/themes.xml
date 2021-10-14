@@ -4,6 +4,7 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/shayany</item>
         <item name="colorPrimaryVariant">@color/shayany</item>
+        <item name="colorAccent">@color/shey</item>
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorControlActivated">?attr/colorPrimaryVariant</item>
         <!-- Status bar color. -->
@@ -16,6 +17,7 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/shey</item>
         <item name="colorPrimaryVariant">@color/shey</item>
+        <item name="colorAccent">@color/shey</item>
         <item name="colorOnPrimary">@color/white</item>
         <item name="android:windowBackground">@color/gray</item>
         <!-- Status bar color. -->

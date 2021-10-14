@@ -4,11 +4,22 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/downloadbuttonbg.xml" value="0.11041666666666666" />
+        <entry key="app/src/main/res/drawable/ic_pause_24dp.xml" value="0.11041666666666666" />
+        <entry key="app/src/main/res/drawable/ic_play_32dp.xml" value="0.11041666666666666" />
+        <entry key="app/src/main/res/drawable/ic_round_play_arrow_24.xml" value="0.11041666666666666" />
+        <entry key="app/src/main/res/drawable/ic_skip_24dp.xml" value="0.21614583333333334" />
+        <entry key="app/src/main/res/drawable/ic_skip_forward_24dp.xml" value="0.11041666666666666" />
+        <entry key="app/src/main/res/drawable/shape_circle_white.xml" value="0.21614583333333334" />
+        <entry key="app/src/main/res/layout-hdpi/fragment_home_linear.xml" value="0.20052083333333334" />
         <entry key="app/src/main/res/layout-land/fragment_home.xml" value="0.25" />
+        <entry key="app/src/main/res/layout-small/fragment_home_linear.xml" value="0.25" />
+        <entry key="app/src/main/res/layout-xhdpi/fragment_home_linear.xml" value="0.20052083333333334" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.14945652173913043" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_downloads.xml" value="0.15715579710144928" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_home_linear.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/helper_activity.xml" value="0.20052083333333334" />
         <entry key="app/src/main/res/layout/nav_header_main.xml" value="0.16485507246376813" />
         <entry key="app/src/main/res/menu/activity_main_drawer.xml" value="0.1" />
         <entry key="app/src/main/res/menu/help_menu.xml" value="0.1" />
