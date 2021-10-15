@@ -8,7 +8,6 @@ import android.view.MenuItem;
 import android.webkit.WebView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 public class HelpActivity extends AppCompatActivity {
     @Override
@@ -17,9 +16,6 @@ public class HelpActivity extends AppCompatActivity {
         ThemeManager Themes = new ThemeManager();
         Themes.ApplyTheme(this);
         setContentView(R.layout.helper_activity);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(R.string.help);
-        setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);

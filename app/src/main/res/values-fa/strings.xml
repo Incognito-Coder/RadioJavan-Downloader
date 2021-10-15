@@ -2,27 +2,17 @@
 <resources>
     <string name="app_name">رادیو جوان دانلودر</string>
     <string name="splash_hint">یه راه ساده برای دانلود از رسانه رادیو جوان</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">دانلودر رادیو جوان</string>
-    <string name="nav_header_subtitle">radiojavan.com</string>
     <string name="home">خانه</string>
     <string name="settings">تنظیمات</string>
     <string name="about">درباره برنامه</string>
     <string name="downloads">دانلودها</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="todo">TODO</string>
     <string name="help">راهنما</string>
     <string name="exit">خروج</string>
     <string name="about_title">درباره نرم افزار</string>
     <string name="about_text">Developers : Alireza , Shayan\nThis is an open source project so you can get it on github.\nIf you have any idea to make our app better please tell us.</string>
     <string name="theme_title">انتخاب تم</string>
     <string name="save_theme">ذخیره</string>
-    <string name="auto_mode">فعالسازی دانلود خودکار</string>
-    <string name="download">دانلود</string>
     <string name="hint_url">لینک را اینجا وارد کنید</string>
-    <string name="search_button">یافتن</string>
-    <string name="soon_text">بزودی</string>
     <string name="telegram_not">برنامه تلگرام روی گوشی نصب نیست</string>
     <string name="vpn_dialog">این برنامه نیازمند اتصال VPN برای کارکردن است\nفیلترشکن خود را فعال کنید و به برنامه برگردید.</string>
     <string name="searching">درحال جستجوی درخواست …</string>
@@ -35,4 +25,10 @@
     <string name="delete">پاک کردن</string>
     <string name="ask_del">آیا مطمئن هستید؟\nفایل %1$s بطور کامل پاک میشود.</string>
     <string name="attention">توجه</string>
+    <string name="github">گیت هاب</string>
+    <string name="website">وبسایت</string>
+    <string name="instagram">اینستاگرام</string>
+    <string name="telegram">تلگرام</string>
+    <string name="unknown">Unknown</string>
+    <string name="copied_clip">لینک دانلود کپی شد</string>
 </resources>

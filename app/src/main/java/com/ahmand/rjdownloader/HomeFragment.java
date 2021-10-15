@@ -6,6 +6,8 @@ import static com.ahmand.rjdownloader.R.string;
 
 import android.app.DownloadManager;
 import android.app.ProgressDialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -82,6 +84,7 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         View down = view.findViewById(id.download_button);
+        View copy = view.findViewById(id.copy_link);
         View search = view.findViewById(id.search_button);
         control_button = view.findViewById(id.playBtn);
         link_text = view.findViewById(id.url_field);
@@ -116,6 +119,15 @@ public class HomeFragment extends Fragment {
                 Snackbar.make(getActivity().findViewById(android.R.id.content), string.empty_queue, Snackbar.LENGTH_SHORT).show();
             }
 
+        });
+        copy.setOnClickListener(v -> {
+            if (!TextUtils.isEmpty(link)) {
+                ClipboardManager clipboardManager = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+                clipboardManager.setPrimaryClip(ClipData.newPlainText("download link", link));
+                Snackbar.make(getActivity().findViewById(android.R.id.content), string.copied_clip, Snackbar.LENGTH_SHORT).show();
+            } else {
+                Snackbar.make(getActivity().findViewById(android.R.id.content), string.empty_queue, Snackbar.LENGTH_SHORT).show();
+            }
         });
         control_button.setOnClickListener(v -> {
             switch (mediaState) {

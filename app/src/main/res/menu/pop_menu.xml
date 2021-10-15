@@ -1,16 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/telegram"
-        android:title="Telegram" />
+        android:title="@string/telegram" />
     <item
         android:id="@+id/instagram"
-        android:title="Instagram" />
+        android:title="@string/instagram" />
     <item
         android:id="@+id/website"
-        android:title="Website" />
+        android:title="@string/website" />
     <item
         android:id="@+id/github"
-        android:title="Github" />
+        android:title="@string/github" />
+    <item
+        android:id="@+id/nav_help"
+        android:icon="@drawable/ic_outline_help_outline_24"
+        android:title="@string/help"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/nav_about"
+        android:icon="@drawable/ic_outline_info_24"
+        android:title="@string/about"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/nav_exit"
+        android:icon="@drawable/ic_outline_exit_to_app_24"
+        android:title="@string/exit" />
+
 </menu>

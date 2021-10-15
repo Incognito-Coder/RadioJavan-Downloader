@@ -10,8 +10,6 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ThemeManager Themes = new ThemeManager();
-        Themes.ApplyTheme(this);
         setContentView(R.layout.activity_splash);
         new Handler().postDelayed(() -> {
             Intent i = new Intent(SplashActivity.this, HomeActivity.class);

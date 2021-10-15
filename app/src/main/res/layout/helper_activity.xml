@@ -6,28 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".HelpActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
-        android:theme="@style/Theme.RJDownloader.AppBarOverlay"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:layout_collapseMode="pin"
-            app:popupTheme="@style/Theme.RJDownloader.PopupOverlay" />
-    </com.google.android.material.appbar.AppBarLayout>
 
     <WebView
         android:id="@+id/webhelp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/app_bar" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

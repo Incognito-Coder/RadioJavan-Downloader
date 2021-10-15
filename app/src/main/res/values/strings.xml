@@ -1,27 +1,17 @@
 <resources>
     <string name="app_name">RJ Downloader</string>
     <string name="splash_hint">Easy way to download radio javan medias.</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">RadioJavan Downloader</string>
-    <string name="nav_header_subtitle">radiojavan.com</string>
     <string name="home">Home</string>
     <string name="settings">Settings</string>
     <string name="about">About App</string>
     <string name="downloads">Downloads</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="todo">TODO</string>
     <string name="help">Help</string>
     <string name="exit">Exit</string>
     <string name="about_title">About Application</string>
-    <string name="about_text">Developers : \nAlireza [ @Incognito_Coder ] , Shayan [ @Shayan_ITMan ]\nThis is an open source project so you can get it on github.\nIf you have any idea to make our app better please tell us.</string>
+    <string name="about_text">Developers : \nAlireza [ @Incognito_Coder ]\nShayan [ @Shayan_ITMan ]\nThis is an open source project so you can get it on github.\nIf you have any idea to make our app better please tell us.</string>
     <string name="theme_title">Choose Theme</string>
     <string name="save_theme">Save</string>
-    <string name="auto_mode">Enable Auto Download</string>
-    <string name="download">Download</string>
     <string name="hint_url">Enter link here</string>
-    <string name="search_button">Search</string>
-    <string name="soon_text">Coming soon</string>
     <string name="telegram_not">No Activity to handle this request(Telegram not installed)</string>
     <string name="vpn_dialog">This app need a vpn for working.\nPlease enable a VPN connection and return to app.</string>
     <string name="searching">Searching request …</string>
@@ -35,4 +25,10 @@
     <string name="delete">DELETE</string>
     <string name="ask_del">Do you want to delete %1$s?\nThis action cannot be undone.</string>
     <string name="attention">Attention</string>
+    <string name="github">Github</string>
+    <string name="website">Website</string>
+    <string name="instagram">Instagram</string>
+    <string name="telegram">Telegram</string>
+    <string name="unknown">Unknown</string>
+    <string name="copied_clip">Copied to ClipBoard</string>
 </resources>

@@ -12,39 +12,24 @@ import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.io.File;
 
 public class HomeActivity extends AppCompatActivity {
-
-    DrawerLayout drawer;
-    NavigationView navigationView;
+    BottomNavigationView navigationView;
     FrameLayout frameLayout;
-    ActionBarDrawerToggle toggle;
-    ImageView imageView;
-    Toolbar toolbar;
-    View header;
-    TextView app_version;
-
 
     private SharedPreferences SavePreference() {
         return PreferenceManager.getDefaultSharedPreferences(this);
@@ -57,29 +42,19 @@ public class HomeActivity extends AppCompatActivity {
         ThemeManager Themes = new ThemeManager();
         Themes.ApplyTheme(this);
         setContentView(R.layout.activity_home);
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        drawer = findViewById(R.id.drawer_layout);
-        navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.bottom_menu);
+        navigationView.setSelectedItemId(R.id.nav_home);
         frameLayout = findViewById(R.id.frame);
-        header = navigationView.getHeaderView(0);
-        imageView = header.findViewById(R.id.thumb);
-        app_version = findViewById(R.id.app_version);
-        app_version.setText("RJ Downloader : v" + BuildConfig.VERSION_NAME);
-        imageView.setOnClickListener(v -> drawer.closeDrawer(GravityCompat.START));
         File AppDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/RadioJavan");
         if (!AppDir.exists()) {
             AppDir.mkdirs();
         }
-        toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
         //Load Default Fragment
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.frame, new HomeFragment());
         transaction.commit();
         //End of codes
-        navigationView.setNavigationItemSelectedListener(menuItem -> {
+        navigationView.setOnNavigationItemSelectedListener(menuItem -> {
             int id = menuItem.getItemId();
             if (id == R.id.nav_home) {
                 loadFragment(new HomeFragment());
@@ -105,34 +80,7 @@ public class HomeActivity extends AppCompatActivity {
                 });
                 Dialog.setPositiveButton(R.string.save_theme, (dialog, which) -> recreate());
                 Dialog.show();
-            } else if (id == R.id.nav_about) {
-                MaterialAlertDialogBuilder Dialog = new MaterialAlertDialogBuilder(this);
-                Dialog.setTitle(R.string.about_title);
-                Dialog.setMessage(R.string.about_text);
-                Dialog.setNeutralButton("VPN Pro", (dialog, which) -> {
-                    try {
-                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://telegram.me/xvpnpro")));
-                    } catch (Exception e) {
-                        Snackbar.make(findViewById(android.R.id.content), R.string.telegram_not, Snackbar.LENGTH_SHORT).show();
-                    }
-                });
-                Dialog.setNegativeButton("IC Mods", ((dialog, which) -> {
-                    try {
-                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://telegram.me/ic_mods")));
-                    } catch (Exception e) {
-                        Snackbar.make(findViewById(android.R.id.content), R.string.telegram_not, Snackbar.LENGTH_SHORT).show();
-                    }
-                }));
-
-                Dialog.setCancelable(true);
-                Dialog.show();
-            } else if (id == R.id.nav_exit) {
-                this.finishAffinity();
-            } else if (id == R.id.nav_help) {
-                Intent intent = new Intent(this, HelpActivity.class);
-                this.startActivity(intent);
             }
-            drawer.closeDrawer(GravityCompat.START);
             return true;
         });
         if (!Utils.isVpnConnectionActive()) {
@@ -186,7 +134,6 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.pop_menu, menu);
         return true;
     }
@@ -201,26 +148,41 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/Incognito-Coder/")));
         } else if (item.getItemId() == R.id.website) {
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://mr-incognito.ir")));
+        } else if (item.getItemId() == R.id.nav_exit) {
+            this.finishAffinity();
+        } else if (item.getItemId() == R.id.nav_help) {
+            Intent intent = new Intent(this, HelpActivity.class);
+            this.startActivity(intent);
+        } else if (item.getItemId() == R.id.nav_about) {
+            MaterialAlertDialogBuilder Dialog = new MaterialAlertDialogBuilder(this);
+            Dialog.setTitle(R.string.about_title);
+            Dialog.setMessage(R.string.about_text);
+            Dialog.setNeutralButton("VPN Pro", (dialog, which) -> {
+                try {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://telegram.me/xvpnpro")));
+                } catch (Exception e) {
+                    Snackbar.make(findViewById(android.R.id.content), R.string.telegram_not, Snackbar.LENGTH_SHORT).show();
+                }
+            });
+            Dialog.setNegativeButton("IC Mods", ((dialog, which) -> {
+                try {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://telegram.me/ic_mods")));
+                } catch (Exception e) {
+                    Snackbar.make(findViewById(android.R.id.content), R.string.telegram_not, Snackbar.LENGTH_SHORT).show();
+                }
+            }));
+
+            Dialog.setCancelable(true);
+            Dialog.show();
         } else {
             return super.onOptionsItemSelected(item);
         }
         return false;
     }
 
-    @Override
-    public void onBackPressed() {
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else if (getSupportFragmentManager().getBackStackEntryCount() > 0)
-            getSupportFragmentManager().popBackStack();
-        else
-            super.onBackPressed();
-    }
-
     public void loadFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame, fragment);
-        transaction.addToBackStack(null);
         transaction.commit();
     }
 }
