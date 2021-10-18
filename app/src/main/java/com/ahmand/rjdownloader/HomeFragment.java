@@ -11,6 +11,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.text.TextUtils;
@@ -159,6 +160,12 @@ public class HomeFragment extends Fragment {
                 player.seekTo((int) slider.getValue());
             }
         });
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q && !HomeActivity.isPasted){
+            new Utils().matchClipData(getActivity().getApplicationContext());
+            link_text.getEditText().setText(Utils.RJ_RESULT);
+            HomeActivity.isPasted = true;
+        }
+
     }
 
 

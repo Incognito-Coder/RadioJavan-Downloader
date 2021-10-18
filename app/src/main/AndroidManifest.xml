@@ -25,7 +25,7 @@
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.RJDownloader.NoActionBar"
-            tools:ignore="Instantiatable">
+            tools:ignore="Instantiatable,LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -35,7 +35,7 @@
             android:name=".HomeActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            tools:ignore="Instantiatable">
+            tools:ignore="Instantiatable,LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT" />

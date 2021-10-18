@@ -11,6 +11,7 @@
         <entry key="app/src/main/res/drawable/ic_skip_24dp.xml" value="0.21614583333333334" />
         <entry key="app/src/main/res/drawable/ic_skip_forward_24dp.xml" value="0.11041666666666666" />
         <entry key="app/src/main/res/drawable/shape_circle_white.xml" value="0.21614583333333334" />
+        <entry key="app/src/main/res/layout-hdpi/activity_splash.xml" value="0.20052083333333334" />
         <entry key="app/src/main/res/layout-hdpi/fragment_home_linear.xml" value="0.20052083333333334" />
         <entry key="app/src/main/res/layout-land/fragment_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout-small/fragment_home_linear.xml" value="0.25" />

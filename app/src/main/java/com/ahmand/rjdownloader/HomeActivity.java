@@ -30,7 +30,7 @@ import java.io.File;
 public class HomeActivity extends AppCompatActivity {
     BottomNavigationView navigationView;
     FrameLayout frameLayout;
-
+    public static boolean isPasted;
     private SharedPreferences SavePreference() {
         return PreferenceManager.getDefaultSharedPreferences(this);
     }
@@ -54,8 +54,8 @@ public class HomeActivity extends AppCompatActivity {
         transaction.add(R.id.frame, new HomeFragment());
         transaction.commit();
         //End of codes
-        navigationView.setOnNavigationItemSelectedListener(menuItem -> {
-            int id = menuItem.getItemId();
+        navigationView.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
             if (id == R.id.nav_home) {
                 loadFragment(new HomeFragment());
             } else if (id == R.id.nav_downloads) {
@@ -171,7 +171,6 @@ public class HomeActivity extends AppCompatActivity {
                     Snackbar.make(findViewById(android.R.id.content), R.string.telegram_not, Snackbar.LENGTH_SHORT).show();
                 }
             }));
-
             Dialog.setCancelable(true);
             Dialog.show();
         } else {
