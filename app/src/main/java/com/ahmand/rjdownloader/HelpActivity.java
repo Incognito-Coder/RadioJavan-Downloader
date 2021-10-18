@@ -38,7 +38,7 @@ public class HelpActivity extends AppCompatActivity {
         if (item.getItemId() == android.R.id.home) {
             finish();
         } else if (item.getItemId() == R.id.githubrepo) {
-            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/Incognito-Coder/Radio-Javan-Downloader")));
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/Incognito-Coder/RadioJavan-Downloader")));
         }
         return super.onOptionsItemSelected(item);
     }

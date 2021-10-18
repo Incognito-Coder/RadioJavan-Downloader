@@ -34,7 +34,6 @@ public class HomeActivity extends AppCompatActivity {
     private SharedPreferences SavePreference() {
         return PreferenceManager.getDefaultSharedPreferences(this);
     }
-
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {

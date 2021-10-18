@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.android.volley.Request;
@@ -99,7 +100,15 @@ public class HomeFragment extends Fragment {
             if (TextUtils.isEmpty(Objects.requireNonNull(link_text.getEditText().getText()).toString())) {
                 Snackbar.make(getActivity().findViewById(android.R.id.content), "Cant be empty", Snackbar.LENGTH_SHORT).show();
             } else {
-                Fetch(link_text.getEditText().getText().toString());
+                APIService apiService =new APIService(getContext());
+                apiService.Fetch(link_text.getEditText().getText().toString(), thumbnail, () -> {
+                    link = apiService.link;
+                    title = apiService.title;
+                    title_text.setText(apiService.title);
+                    mime = apiService.mime;
+                    control_button.setEnabled(true);
+                    playerIsReady();
+                });
             }
         });
         down.setOnClickListener(v -> {
@@ -197,35 +206,7 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    public void Fetch(String rj) {
-        final ProgressDialog pDialog;
-        pDialog = new ProgressDialog(getContext());
-        pDialog.setTitle(getString(R.string.fetchtext));
-        pDialog.setMessage(getString(R.string.searching));
-        pDialog.setCancelable(false);
-        pDialog.show();
-        RequestQueue queue = Volley.newRequestQueue(requireContext());
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, "https://mr-alireza.ir/RJ/rj.php?link=" + rj,
-                response -> {
-                    try {
-                        JSONObject json = new JSONObject(response);
-                        link = json.getString("result");
-                        title = json.getString("title");
-                        mime = json.getString("type");
-                        title_text.setText(title);
-                        Glide.with(requireContext()).load(json.getString("photo")).into(thumbnail);
-                        control_button.setEnabled(true);
-                        playerIsReady();
-                        pDialog.dismiss();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                },
-                Throwable::printStackTrace
-        );
 
-        queue.add(stringRequest);
-    }
 
     @Override
     public void onDestroyView() {
