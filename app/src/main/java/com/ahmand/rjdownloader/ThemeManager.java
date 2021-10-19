@@ -6,7 +6,7 @@ import android.preference.PreferenceManager;
 public class ThemeManager {
 
     public void ApplyTheme(Context context) {
-        Boolean theme = PreferenceManager.getDefaultSharedPreferences(context).getBoolean("dark_mode",false);
+        Boolean theme = PreferenceManager.getDefaultSharedPreferences(context).getBoolean("dark_mode", false);
         context.setTheme(SetDark(theme));
     }
 

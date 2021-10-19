@@ -18,8 +18,8 @@
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="use_android_download_manager"
-            android:title="@string/enable_dm"
             android:summary="@string/default_download_manager"
+            android:title="@string/enable_dm"
             app:iconSpaceReserved="false" />
         <ListPreference
             android:defaultValue="256"
@@ -35,13 +35,13 @@
         app:iconSpaceReserved="false">
         <Preference
             android:key="pref_help"
-            app:iconSpaceReserved="false"
+            android:summary="@string/help_summary"
             android:title="@string/help"
-            android:summary="@string/help_summary"/>
+            app:iconSpaceReserved="false" />
         <Preference
             android:key="pref_about"
-            app:iconSpaceReserved="false"
+            android:summary="@string/about_summary"
             android:title="@string/about"
-            android:summary="@string/about_summary"/>
+            app:iconSpaceReserved="false" />
     </PreferenceCategory>
 </PreferenceScreen>

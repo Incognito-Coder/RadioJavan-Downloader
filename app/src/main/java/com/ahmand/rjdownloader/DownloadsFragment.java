@@ -20,6 +20,7 @@ import java.util.ArrayList;
 public class DownloadsFragment extends Fragment {
     ListView lv_files;
     ArrayAdapter<String> adapter;
+
     public DownloadsFragment() {
         // Required empty public constructor
     }

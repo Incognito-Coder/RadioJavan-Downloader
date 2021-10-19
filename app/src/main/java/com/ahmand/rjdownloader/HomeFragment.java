@@ -4,8 +4,6 @@ import static com.ahmand.rjdownloader.R.id;
 import static com.ahmand.rjdownloader.R.layout;
 import static com.ahmand.rjdownloader.R.string;
 
-import android.app.DownloadManager;
-import android.app.ProgressDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -13,7 +11,6 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,25 +20,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.slider.Slider;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -50,7 +36,6 @@ import java.util.TimerTask;
 public class HomeFragment extends Fragment {
     private static final String TAG = "HomeFragment";
     View view;
-    DownloadManager downloadmanager;
     TextInputLayout link_text;
     TextView title_text;
     ImageView thumbnail;
@@ -69,7 +54,6 @@ public class HomeFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        downloadmanager = (DownloadManager) requireActivity().getSystemService(Context.DOWNLOAD_SERVICE);
         try {
             HomeActivity activity = (HomeActivity) getActivity();
             assert activity != null;
@@ -98,9 +82,9 @@ public class HomeFragment extends Fragment {
         seek = view.findViewById(id.musicSlider);
         search.setOnClickListener(v -> {
             if (TextUtils.isEmpty(Objects.requireNonNull(link_text.getEditText().getText()).toString())) {
-                Snackbar.make(getActivity().findViewById(android.R.id.content), "Cant be empty", Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(getView(), "Cant be empty", Snackbar.LENGTH_SHORT).show();
             } else {
-                APIService apiService =new APIService(getContext());
+                APIService apiService = new APIService(getContext());
                 apiService.Fetch(link_text.getEditText().getText().toString(), thumbnail, () -> {
                     link = apiService.link;
                     title = apiService.title;
@@ -113,30 +97,31 @@ public class HomeFragment extends Fragment {
         });
         down.setOnClickListener(v -> {
             if (!TextUtils.isEmpty(link)) {
-                Snackbar.make(getActivity().findViewById(android.R.id.content), string.download_started, Snackbar.LENGTH_SHORT).show();
-                Uri uri = Uri.parse(link);
-                DownloadManager.Request request = new DownloadManager.Request(uri);
-                request.setTitle(title);
-                request.setDescription("Downloading");
-                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-                Map<String, String> types = new HashMap<>();
-                types.put("music", ".mp3");
-                types.put("podcast", ".mp3");
-                types.put("video", ".mp4");
-                request.setDestinationUri(Uri.fromFile(new File(Environment.getExternalStorageDirectory() + "/RadioJavan", title + types.get(mime))));
-                downloadmanager.enqueue(request);
+                Boolean download_with = PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("use_android_download_manager", true);
+                String quality = PreferenceManager.getDefaultSharedPreferences(getContext()).getString("list_preference_quality", "256");
+                DownloadService async = new DownloadService(getContext());
+                if (quality.equals("256")) {
+                    async.url = link;
+                } else {
+                    async.url = link.replace("256", "128");
+                }
+                if (!download_with) {
+                    async.execute();
+                } else {
+                    Snackbar.make(getView(), string.download_started, Snackbar.LENGTH_SHORT).show();
+                    async.defaultDownloadManager();
+                }
             } else {
-                Snackbar.make(getActivity().findViewById(android.R.id.content), string.empty_queue, Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(getView(), string.empty_queue, Snackbar.LENGTH_SHORT).show();
             }
-
         });
         copy.setOnClickListener(v -> {
             if (!TextUtils.isEmpty(link)) {
                 ClipboardManager clipboardManager = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
                 clipboardManager.setPrimaryClip(ClipData.newPlainText("download link", link));
-                Snackbar.make(getActivity().findViewById(android.R.id.content), string.copied_clip, Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(getView(), string.copied_clip, Snackbar.LENGTH_SHORT).show();
             } else {
-                Snackbar.make(getActivity().findViewById(android.R.id.content), string.empty_queue, Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(getView(), string.empty_queue, Snackbar.LENGTH_SHORT).show();
             }
         });
         control_button.setOnClickListener(v -> {
@@ -169,7 +154,7 @@ public class HomeFragment extends Fragment {
                 player.seekTo((int) slider.getValue());
             }
         });
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q && !HomeActivity.isPasted){
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q && !HomeActivity.isPasted) {
             new Utils().matchClipData(getActivity().getApplicationContext());
             link_text.getEditText().setText(Utils.RJ_RESULT);
             HomeActivity.isPasted = true;
@@ -205,7 +190,6 @@ public class HomeFragment extends Fragment {
             });
         });
     }
-
 
 
     @Override

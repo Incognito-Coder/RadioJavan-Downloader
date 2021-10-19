@@ -13,8 +13,8 @@ import java.util.List;
 import java.util.Locale;
 
 public class Utils {
-    String[] urls = {"rjplay.co", "rj.app", "rjapp.app", "rjvan.me", "radiojavan.com"};
     public static String RJ_RESULT;
+    String[] urls = {"rjplay.co", "rj.app", "rjapp.app", "rjvan.me", "radiojavan.com"};
 
     public static String convertMillisToString(long durationInMillis) {
         long second = (durationInMillis / 1000) % 60;

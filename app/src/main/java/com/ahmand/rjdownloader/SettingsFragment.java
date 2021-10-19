@@ -3,7 +3,6 @@ package com.ahmand.rjdownloader;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
@@ -11,17 +10,17 @@ import androidx.preference.PreferenceFragmentCompat;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
-public class SettingsFragment extends  PreferenceFragmentCompat {
+public class SettingsFragment extends PreferenceFragmentCompat {
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        setPreferencesFromResource(R.xml.prefs,rootKey);
+        setPreferencesFromResource(R.xml.prefs, rootKey);
     }
 
     @Override
     public boolean onPreferenceTreeClick(Preference preference) {
         String key = preference.getKey();
-        switch (key){
+        switch (key) {
             case "pref_about":
                 MaterialAlertDialogBuilder Dialog = new MaterialAlertDialogBuilder(getContext());
                 Dialog.setTitle(R.string.about_title);
@@ -48,8 +47,8 @@ public class SettingsFragment extends  PreferenceFragmentCompat {
                 this.startActivity(intent);
                 break;
             case "dark_mode":
-                Snackbar.make(getView(),R.string.restart,Snackbar.LENGTH_SHORT).setAction("RESTART", v -> {
-restart();
+                Snackbar.make(getView(), R.string.restart, Snackbar.LENGTH_SHORT).setAction("RESTART", v -> {
+                    restart();
                 }).show();
                 break;
             default:
@@ -57,7 +56,8 @@ restart();
         }
         return true;
     }
-    public void restart(){
+
+    public void restart() {
         Intent intent = new Intent(getContext(), SplashActivity.class);
         getContext().startActivity(intent);
         getActivity().finishAffinity();
