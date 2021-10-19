@@ -19,7 +19,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RJDownloader">
-        <activity android:name=".HelpActivity" android:exported="true" />
+        <activity
+            android:name=".HelpActivity"
+            android:exported="true" />
         <activity
             android:name=".SplashActivity"
             android:exported="true"
@@ -28,6 +30,7 @@
             tools:ignore="Instantiatable,LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -38,7 +41,9 @@
             tools:ignore="Instantiatable,LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
+
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>

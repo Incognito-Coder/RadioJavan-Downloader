@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory
+        android:title="@string/prefs_general"
+        app:iconSpaceReserved="false">
+        <SwitchPreference
+            android:layout_width="match_parent"
+            android:defaultValue="false"
+            android:key="dark_mode"
+            android:summary="@string/sum_theme"
+            android:title="@string/prefs_key_dark_mode"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/pref_download"
+        app:iconSpaceReserved="false">
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="use_android_download_manager"
+            android:title="@string/enable_dm"
+            android:summary="@string/default_download_manager"
+            app:iconSpaceReserved="false" />
+        <ListPreference
+            android:defaultValue="256"
+            android:entries="@array/selectQuality"
+            android:entryValues="@array/selectedQuality"
+            android:key="list_preference_quality"
+            android:summary="@string/song_quality_summary"
+            android:title="@string/song_quality"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/prefs_others"
+        app:iconSpaceReserved="false">
+        <Preference
+            android:key="pref_help"
+            app:iconSpaceReserved="false"
+            android:title="@string/help"
+            android:summary="@string/help_summary"/>
+        <Preference
+            android:key="pref_about"
+            app:iconSpaceReserved="false"
+            android:title="@string/about"
+            android:summary="@string/about_summary"/>
+    </PreferenceCategory>
+</PreferenceScreen>

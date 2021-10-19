@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="selectQuality">
+        <item>128 Bit</item>
+        <item>256 Bit</item>
+    </string-array>
+    <string-array name="selectedQuality">
+        <item>128</item>
+        <item>256</item>
+    </string-array>
+</resources>

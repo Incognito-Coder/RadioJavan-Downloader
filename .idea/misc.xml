@@ -17,15 +17,18 @@
         <entry key="app/src/main/res/layout-small/fragment_home_linear.xml" value="0.25" />
         <entry key="app/src/main/res/layout-xhdpi/fragment_home_linear.xml" value="0.20052083333333334" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_settings.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_downloads.xml" value="0.15715579710144928" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_home_linear.xml" value="0.22" />
         <entry key="app/src/main/res/layout/helper_activity.xml" value="0.3016069221260816" />
         <entry key="app/src/main/res/layout/nav_header_main.xml" value="0.16485507246376813" />
+        <entry key="app/src/main/res/layout/pref_activity.xml" value="0.20052083333333334" />
         <entry key="app/src/main/res/menu/activity_main_drawer.xml" value="0.1" />
         <entry key="app/src/main/res/menu/help_menu.xml" value="0.1" />
         <entry key="app/src/main/res/menu/pop_menu.xml" value="0.1" />
+        <entry key="app/src/main/res/xml/prefs.xml" value="0.20052083333333334" />
       </map>
     </option>
   </component>

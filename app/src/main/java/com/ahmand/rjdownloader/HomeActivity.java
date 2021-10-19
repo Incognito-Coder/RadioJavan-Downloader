@@ -28,12 +28,14 @@ import com.google.android.material.snackbar.Snackbar;
 import java.io.File;
 
 public class HomeActivity extends AppCompatActivity {
+    public static boolean isPasted;
     BottomNavigationView navigationView;
     FrameLayout frameLayout;
-    public static boolean isPasted;
+
     private SharedPreferences SavePreference() {
         return PreferenceManager.getDefaultSharedPreferences(this);
     }
+
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,25 +62,7 @@ public class HomeActivity extends AppCompatActivity {
             } else if (id == R.id.nav_downloads) {
                 loadFragment(new DownloadsFragment());
             } else if (id == R.id.nav_settings) {
-                CharSequence[] Theme = new CharSequence[]{"Light", "Dark"};
-                int checked = 0;
-                if (Themes.GetCurrent(this).equals("black")) {
-                    checked = 1;
-                }
-                MaterialAlertDialogBuilder Dialog = new MaterialAlertDialogBuilder(this);
-                Dialog.setTitle(R.string.theme_title);
-                Dialog.setSingleChoiceItems(Theme, checked, (dialog, which) -> {
-                    if (which == 0) {
-                        SavePreference().edit().putString("theme", "white").apply();
-                        setTheme(R.style.Theme_RJDownloader);
-                    } else if (which == 1) {
-                        SavePreference().edit().putString("theme", "black").apply();
-                        setTheme(R.style.Theme_RJDownloader_Dark);
-
-                    }
-                });
-                Dialog.setPositiveButton(R.string.save_theme, (dialog, which) -> recreate());
-                Dialog.show();
+                loadFragment(new SettingsFragment());
             }
             return true;
         });
@@ -156,9 +140,9 @@ public class HomeActivity extends AppCompatActivity {
             MaterialAlertDialogBuilder Dialog = new MaterialAlertDialogBuilder(this);
             Dialog.setTitle(R.string.about_title);
             Dialog.setMessage(R.string.about_text);
-            Dialog.setNeutralButton("VPN Pro", (dialog, which) -> {
+            Dialog.setNeutralButton("Shayanify", (dialog, which) -> {
                 try {
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://telegram.me/xvpnpro")));
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://telegram.me/Shayanify")));
                 } catch (Exception e) {
                     Snackbar.make(findViewById(android.R.id.content), R.string.telegram_not, Snackbar.LENGTH_SHORT).show();
                 }

@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class DownloadsFragment extends Fragment {
     ListView lv_files;
-
+    ArrayAdapter<String> adapter;
     public DownloadsFragment() {
         // Required empty public constructor
     }
@@ -44,8 +44,7 @@ public class DownloadsFragment extends Fragment {
             ArrayList<String> filesinfolder;
             Utils files = new Utils();
             filesinfolder = files.GetFiles(Environment.getExternalStorageDirectory() + "/RadioJavan");
-            ArrayAdapter<String> adapter
-                    = new ArrayAdapter<>(getContext(),
+            adapter = new ArrayAdapter<>(getContext(),
                     android.R.layout.simple_list_item_1,
                     filesinfolder);
             lv_files.setAdapter(adapter);

@@ -6,18 +6,12 @@ import android.preference.PreferenceManager;
 public class ThemeManager {
 
     public void ApplyTheme(Context context) {
-        String theme = PreferenceManager.getDefaultSharedPreferences(context).getString("theme", "");
-        context.setTheme(GetTheme(theme));
+        Boolean theme = PreferenceManager.getDefaultSharedPreferences(context).getBoolean("dark_mode",false);
+        context.setTheme(SetDark(theme));
     }
 
-    public int GetTheme(String theme) {
-        if (theme.equals("black")) return R.style.Theme_RJDownloader_Dark;
-        if (theme.equals("white")) return R.style.Theme_RJDownloader;
-        return 0;
-    }
-
-    public String GetCurrent(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context).getString("theme", "");
-
+    public int SetDark(Boolean dark) {
+        if (dark) return R.style.Theme_RJDownloader_Dark;
+        return R.style.Theme_RJDownloader;
     }
 }

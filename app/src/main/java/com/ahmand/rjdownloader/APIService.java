@@ -2,6 +2,7 @@ package com.ahmand.rjdownloader;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.util.Base64;
 import android.widget.ImageView;
 
 import com.android.volley.Request;
@@ -13,20 +14,20 @@ import com.bumptech.glide.Glide;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.nio.charset.StandardCharsets;
+
 public class APIService {
+    private final byte[] url = Base64.decode("aHR0cHM6Ly9tci1hbGlyZXphLmlyL1JKL3JqLnBocD9saW5rPQo=", Base64.DEFAULT);
     public Context context;
-    private ResultListener ResultListener;
-    public  String link;
-    public  String title;
-    public  String mime;
+    public String link;
+    public String title;
+    public String mime;
 
     public APIService(Context context) {
         this.context = context;
-
     }
 
-    public void Fetch(String rj, ImageView thumbnail,ResultListener ResultListener) {
-        this.ResultListener =ResultListener;
+    public void Fetch(String rj, ImageView thumbnail, ResultListener ResultListener) {
         final ProgressDialog pDialog;
         pDialog = new ProgressDialog(context);
         pDialog.setTitle(context.getString(R.string.fetchtext));
@@ -34,7 +35,7 @@ public class APIService {
         pDialog.setCancelable(false);
         pDialog.show();
         RequestQueue queue = Volley.newRequestQueue(context);
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, "https://mr-alireza.ir/RJ/rj.php?link=" + rj,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, new String(url, StandardCharsets.UTF_8) + rj,
                 response -> {
                     try {
                         JSONObject json = new JSONObject(response);

@@ -31,4 +31,16 @@
     <string name="telegram">Telegram</string>
     <string name="unknown">Unknown</string>
     <string name="copied_clip">Copied to ClipBoard</string>
+    <string name="prefs_general">General</string>
+    <string name="pref_download">Download Settings</string>
+    <string name="prefs_key_dark_mode">Enable Dark Theme</string>
+    <string name="sum_theme">Change application theme from light to dark.Required to restart application</string>
+    <string name="song_quality">Select Music Quality</string>
+    <string name="prefs_others">Others</string>
+    <string name="about_summary">Some information about app and developers</string>
+    <string name="song_quality_summary">Choose between 128 and 256 to use as default file quality</string>
+    <string name="default_download_manager">Disable to use built in download manager</string>
+    <string name="enable_dm">Use Android Default Download Manager</string>
+    <string name="restart">Restart to apply changes</string>
+    <string name="help_summary">How to use downloader</string>
 </resources>
