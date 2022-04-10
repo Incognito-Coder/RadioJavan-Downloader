@@ -10,8 +10,6 @@
     <string name="exit">خروج</string>
     <string name="about_title">درباره نرم افزار</string>
     <string name="about_text">Developers : Alireza , Shayan\nThis is an open source project so you can get it on github.\nIf you have any idea to make our app better please tell us.</string>
-    <string name="theme_title">انتخاب تم</string>
-    <string name="save_theme">ذخیره</string>
     <string name="hint_url">لینک را اینجا وارد کنید</string>
     <string name="telegram_not">برنامه تلگرام روی گوشی نصب نیست</string>
     <string name="vpn_dialog">این برنامه نیازمند اتصال VPN برای کارکردن است\nفیلترشکن خود را فعال کنید و به برنامه برگردید.</string>
@@ -45,4 +43,6 @@
     <string name="help_summary">چگونه استفاده کنیم؟</string>
     <string name="downloading">درحال دانلود فایل</string>
     <string name="please_wait">یه لحظه</string>
+    <string name="empty">Cant be empty</string>
+    <string name="invalidUrl">Invalid Address</string>
 </resources>

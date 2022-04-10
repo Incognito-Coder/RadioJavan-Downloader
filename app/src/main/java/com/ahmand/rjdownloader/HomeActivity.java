@@ -3,13 +3,11 @@ package com.ahmand.rjdownloader;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
@@ -28,13 +26,8 @@ import com.google.android.material.snackbar.Snackbar;
 import java.io.File;
 
 public class HomeActivity extends AppCompatActivity {
-    public static boolean isPasted;
     BottomNavigationView navigationView;
     FrameLayout frameLayout;
-
-    private SharedPreferences SavePreference() {
-        return PreferenceManager.getDefaultSharedPreferences(this);
-    }
 
     @SuppressLint("SetTextI18n")
     @Override

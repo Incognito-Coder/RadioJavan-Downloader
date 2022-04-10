@@ -5,6 +5,7 @@ import android.content.Context;
 import android.util.Base64;
 import android.widget.ImageView;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
@@ -15,6 +16,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
 
 public class APIService {
     private final byte[] url = Base64.decode("aHR0cHM6Ly9tci1hbGlyZXphLmlyL1JKL3JqLnBocD9saW5rPQo=", Base64.DEFAULT);
@@ -27,7 +30,7 @@ public class APIService {
         this.context = context;
     }
 
-    public void Fetch(String rj, ImageView thumbnail, ResultListener ResultListener) {
+    public void Fetch(String rj, ImageView thumbnail, ResultListener resultListener) {
         final ProgressDialog pDialog;
         pDialog = new ProgressDialog(context);
         pDialog.setTitle(context.getString(R.string.fetchtext));
@@ -44,7 +47,7 @@ public class APIService {
                         mime = json.getString("type");
                         Glide.with(context).load(json.getString("photo")).into(thumbnail);
                         pDialog.dismiss();
-                        ResultListener.onOK();
+                        resultListener.onOK();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

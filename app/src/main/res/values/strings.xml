@@ -9,8 +9,6 @@
     <string name="exit">Exit</string>
     <string name="about_title">About Application</string>
     <string name="about_text">Developers : \nAlireza [ @Incognito_Coder ]\nShayan [ @Shayan_ITMan ]\nThis is an open source project so you can get it on github.\nIf you have any idea to make our app better please tell us.</string>
-    <string name="theme_title">Choose Theme</string>
-    <string name="save_theme">Save</string>
     <string name="hint_url">Enter link here</string>
     <string name="telegram_not">No Activity to handle this request(Telegram not installed)</string>
     <string name="vpn_dialog">This app need a vpn for working.\nPlease enable a VPN connection and return to app.</string>
@@ -45,4 +43,6 @@
     <string name="help_summary">How to use downloader</string>
     <string name="downloading">Downloading file</string>
     <string name="please_wait">Wait a moment</string>
+    <string name="empty">Cant be empty</string>
+    <string name="invalidUrl">Invalid Address</string>
 </resources>

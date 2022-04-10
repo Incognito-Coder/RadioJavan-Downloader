@@ -1,5 +1,6 @@
 package com.ahmand.rjdownloader;
 
+import static com.ahmand.rjdownloader.R.drawable;
 import static com.ahmand.rjdownloader.R.id;
 import static com.ahmand.rjdownloader.R.layout;
 import static com.ahmand.rjdownloader.R.string;
@@ -9,7 +10,6 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -40,7 +40,6 @@ public class HomeFragment extends Fragment {
     TextView title_text;
     ImageView thumbnail;
     String link;
-    String title;
     String mime;
     String shared;
     MediaPlayer player;
@@ -82,22 +81,23 @@ public class HomeFragment extends Fragment {
         seek = view.findViewById(id.musicSlider);
         search.setOnClickListener(v -> {
             if (TextUtils.isEmpty(Objects.requireNonNull(link_text.getEditText().getText()).toString())) {
-                Snackbar.make(getView(), "Cant be empty", Snackbar.LENGTH_SHORT).show();
-            } else {
+                Snackbar.make(getView(), string.empty, Snackbar.LENGTH_SHORT).show();
+            } else if (Utils.isRadioJavan(link_text.getEditText().getText().toString())) {
                 APIService apiService = new APIService(getContext());
                 apiService.Fetch(link_text.getEditText().getText().toString(), thumbnail, () -> {
                     link = apiService.link;
-                    title = apiService.title;
                     title_text.setText(apiService.title);
                     mime = apiService.mime;
                     control_button.setEnabled(true);
                     playerIsReady();
                 });
+            } else {
+                Snackbar.make(getView(), string.invalidUrl, Snackbar.LENGTH_SHORT).show();
             }
         });
         down.setOnClickListener(v -> {
             if (!TextUtils.isEmpty(link)) {
-                Boolean download_with = PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("use_android_download_manager", true);
+                boolean download_with = PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("use_android_download_manager", true);
                 String quality = PreferenceManager.getDefaultSharedPreferences(getContext()).getString("list_preference_quality", "256");
                 DownloadService async = new DownloadService(getContext());
                 if (quality.equals("256")) {
@@ -129,13 +129,13 @@ public class HomeFragment extends Fragment {
                 case STOP:
                     player.start();
                     mediaState = StreamState.PLAYING;
-                    control_button.setImageResource(R.drawable.ic_round_pause_24);
+                    control_button.setImageResource(drawable.ic_round_pause_24);
                     break;
                 case PAUSE:
                 case PLAYING:
                     player.pause();
                     mediaState = StreamState.STOP;
-                    control_button.setImageResource(R.drawable.ic_round_play_arrow_24);
+                    control_button.setImageResource(drawable.ic_round_play_arrow_24);
                     break;
             }
         });
@@ -154,12 +154,6 @@ public class HomeFragment extends Fragment {
                 player.seekTo((int) slider.getValue());
             }
         });
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q && !HomeActivity.isPasted) {
-            new Utils().matchClipData(getActivity().getApplicationContext());
-            link_text.getEditText().setText(Utils.RJ_RESULT);
-            HomeActivity.isPasted = true;
-        }
-
     }
 
 
@@ -186,7 +180,7 @@ public class HomeFragment extends Fragment {
                 timer.cancel();
                 player.release();
                 mediaState = StreamState.STOP;
-                control_button.setImageResource(R.drawable.ic_round_play_arrow_24);
+                control_button.setImageResource(drawable.ic_round_play_arrow_24);
             });
         });
     }
